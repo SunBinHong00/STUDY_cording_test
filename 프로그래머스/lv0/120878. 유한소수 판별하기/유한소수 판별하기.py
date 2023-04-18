@@ -4,10 +4,7 @@ def solution(a, b):
             break
     b =  b//i
 
-    while (b/2)%1 == 0:
-    
-        b //= 2
-    
-    while (b/5)%1 == 0:
-        b //= 5
+    for i in [2,5]:
+        while not b%i:
+            b//=i
     return 1 if b==1 else 2
