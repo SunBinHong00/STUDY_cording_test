@@ -4,7 +4,7 @@ def solution(begin, target, words):
     answer = []
     history = set()
     
-    def dfs(w, h):
+    def bfs(w, h):
 
         h.add(w)
         
@@ -23,15 +23,14 @@ def solution(begin, target, words):
             
             elif matched:
                 for m in matched:
-                    print(m,h)
-                    dfs(m,h)
+                    bfs(m,h)
             else:
                 answer.append(0)    
 
-    dfs(begin,history)
+    bfs(begin,history)
     
     answer = [i for i in answer if i!=0]
-    print(answer)
+
     if answer:
         return min([len(i) for i in answer])
     else:
