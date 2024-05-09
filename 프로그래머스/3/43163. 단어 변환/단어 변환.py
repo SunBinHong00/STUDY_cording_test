@@ -35,3 +35,24 @@ def solution(begin, target, words):
         return min([len(i) for i in answer])
     else:
         return 0
+from collections import deque
+
+def solution(begin, target, words):
+    if target not in words:
+        return 0
+
+    queue = deque([(begin, 0)])  # (current word, transformation steps)
+    visited = set([begin])
+
+    while queue:
+        current_word, steps = queue.popleft()
+
+        if current_word == target:
+            return steps
+
+        for word in words:
+            if word not in visited and sum(1 for a, b in zip(word, current_word) if a != b) == 1:
+                visited.add(word)
+                queue.append((word, steps + 1))
+
+    return 0
